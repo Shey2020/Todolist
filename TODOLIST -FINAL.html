@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="todolist.css"> 
+</head>
+<body>
+<header>
+<h3>ToDo</h3>
+<div id="today" class="today"><div>
+</header>
+
+<div id="container" class="container">
+	<input id="inputtodo" class="inputtodo">
+	<button id="add" calss="add">ADD</button>
+	<ul id="list" class="list"></ul>
+</div>
+<script>
+todoList=document.getElementsByTagName("li")
+var list=document.querySelector("#list");
+var btn=document.querySelector("#add");
+var i=0;
+btn.addEventListener('click',addTodo);
+
+var today=new Date();
+document.getElementById("today").innerHTML=today.getMonth()+1+"月"+today.getDate()+"日";
+
+var todoarr=JSON.parse(localStorage.getItem("todoitems"))||[];
+updateList(todoarr);
+
+function addTodo(){
+  var inputtd = document.querySelector("#inputtodo").value;
+  if (inputtd==" "){alert("Please enter your ToDo!");return;}
+  todoarr.push({item:inputtd,
+               checked:"check"
+               });
+  updateList(todoarr);
+  localStorage.setItem("todoitems",JSON.stringify(todoarr));
+}
+  function updateList(todoarr){
+    while (i<todoarr.length)
+    {var li=document.createElement("li");
+  var content=document.createElement("span");
+    var t=document.createTextNode(todoarr[i].item);
+    t.checked=todoarr[i].checked;
+
+	if(t.checked=="check"){
+	content.className="content"
+	}else if(t.checked=="checked"){
+	content.className="crossout"};
+
+  content.appendChild(t);
+  li.appendChild(content);
+  li.num=i;
+  list.appendChild(li);
+ document.querySelector("#inputtodo").value=" ";
+  
+  var close=document.createElement('span');
+  close.className="closebtn";
+  var x=document.createTextNode('x');
+  close.appendChild(x);
+  li.appendChild(close);
+  i++};};
+
+var list=document.querySelector("#list");
+list.addEventListener("click",delTodo,false)
+list.addEventListener("click",crossTodo,false)
+
+function delTodo(e){
+  if(e.target.className=="closebtn"){
+    e.target.parentElement.style.display = "none";
+    todoarr.splice(e.target.parentElement.num,1);
+    localStorage.setItem("todoitems",JSON.stringify(todoarr));
+    updateList(todoarr);
+    location.reload();
+  };
+}
+function crossTodo(e){
+  if(e.target.className=="content"){
+    e.target.className="crossout";
+    todoarr[e.target.parentElement.num].checked="checked";
+  }else if(e.target.className=="crossout"){
+    e.target.className="content";
+  todoarr[e.target.parentElement.num].checked="check";}
+    localStorage.setItem("todoitems",JSON.stringify(todoarr));
+    updateList(todoarr);
+}
+</script>
+</body>
+</html>
