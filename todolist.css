@@ -1,0 +1,20 @@
+body{font-family:courier new;}
+header{width:302px;height:80px;border-radius:15px 15px 3px 3px;position:relative;
+	background-image:url("https://thumbs.dreamstime.com/b/illustration-square-aqua-abstract-oil-painting-background-129052347.jpg");}
+h3{font-size:35px;padding:5px;}
+.today{padding:5px; position:absolute;bottom:0px;}
+
+.container{width:300px;background-color:#E0FFFF;}
+
+input{margin:5px;height:20px;width:230px;border:none;border-bottom:2px solid #73b58e;}
+input:focus{border:1px solid green;}
+button{background-color:white;radius:25%;margin-left:0px;height:20px;border:none;}
+
+ul{list-style-type:none;margin:0px;padding:0px;}
+li{font-size:20px;line-height: 1em;position: relative;}
+li:hover{background-color:#99ffcc;}
+
+.content{padding:5px;display:inline-block; width:290px;cursor:pointer;}
+.closebtn{position:absolute;right:0px;top:0px;padding:5px;cursor:pointer;}
+.closebtn:hover{background-color:#73b58e;}
+.crossout{padding:5px;display:inline-block; width:290px;cursor:pointer;text-decoration: line-through;background-color:#cccccc;}
